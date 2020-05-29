@@ -2,17 +2,40 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Maya Patel</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
   <body>
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+      <h1>Maya Patel</h1>
+      <p>Penn Engineering '22.  Future software enigneer.</p>
+    </div>
+    <div class="wrapper">
+        <div id="menubar">
+            <ul id="menulist">
+                <li><a href="images.html">Image Gallery</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+        </div>
+        <div id="main">
+            <h1>Welcome!</h1>
+            <p>Hi, I'm Maya, a rising junior at the University of Pennsylvania.  I'm navigating the tech industry with a passion for learning new things and teaching others along the way.
+                <br>
+                Get to know me!  Reach me at <a href="mailto:mayahp@seas.upenn.edu">mayahp@seas.upenn.edu</a>, connect with me on <a href="https://www.linkedin.com/in/mayahpatel">LinkedIn</a>, and view my work on <a href="https://www.github.com/mayahp">GitHub</a>.
+            </p>
+            <h2>A Bit About Me</h2>
+            <p>
+                I'm currently working from home in Colts Neck, NJ.  I have two younger sisters who are both in high school.  I'm spending lockdown by playing board games with them, completing jigsaw puzzles, and organizing virtual game nights with my college friends.  I am not only the oldest one in the family, but also the oldest of all of my immediate cousins on both sides of my family.  (On my mom's side of the family, I'm the oldest of the entire new generation of kids!)  Since almost all of my extended family immigrated to the USA in the 70s and 80s, I've been close with them for my whole life.  My cousins on my dad's side have lived 15 minutes away from me for most of my life, so I have many childhood memories playing with them. 
+                <br>
+                At school, I am a teaching assistant in the Computer Science department, a board member of PennApps (Penn's yearly hackathon, and the original college hackathon), a member of Zeta Tau Alpha Sorority, and involved with my school's South Asian American and Hindu communities.  I enjoy teaching computer science because I believe in making CS as accessible to as many people as possible.  I am proud to watch my students go from being undecided about their major to declarign a CS major, second major, or minor.  This is my first year on PennApps board, and I'm concerned that we won't be able to have a normal PennApps in the fall due to COVID-19.  However, it is still very exciting to help organize such a large event, regardless of if it's in-person or virtual.  I am one of the heads of the Operations team and also a member of the Logistics team.  I'm currently leading the recruitment process for PennApps, and making sure that each individual team gets their interviews conducted on time.  As for my sorority, I joined in the beginning of sophomore spring.  I had only spent around six weeks as a member before everyone was sent home for lockdown, but already I am feeling welcome in the group.  I enjoy being part of a large group on campus with its traditions, and to be able to meet people who study things other than engineering.  Finally, getting involved with various cultural groups on campus is a great break from my other extracurricular activities, which requre large time commitments.  Penn Hindu & Jain Association is a great organization that contains undergraduate and graduate students alike.  Since COVID-19 lockdowns began, we have been watching Bollywood movies and playing games over video chat together.
+            </p>
+        </div>
+        <div id="sidebar">
+            <h3>Song Recommendation</h3>
+            <p>I enjoy listening to pop, EDM, K-pop, and Bollywood music.  Click here to get a song recommendation from me:</p>
+            <button onClick="addRandomSong()">Find Song</button>
+            <div id="song-container"></div>
+        </div>
     </div>
   </body>
-</html>
