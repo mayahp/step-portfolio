@@ -1,9 +1,60 @@
+body {
+    font: 100% Courier New;
+    background-color: black;
+    margin: 20px;
+    line-height: 26px;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
+  color: #ffbad2;
 }
 
-#greeting-container {
-  margin-top: 20px;
+div {
+    display: block;
+}
+
+h1 {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.wrapper {
+    color: #ffbad2;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+
+.menuitem {
+    color: #ffbad2;
+    cursor: pointer;
+}
+
+li {
+    display: list-item;
+}
+
+a {
+    color : #ffbad2;
+}
+
+#sidebar {
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 10px;
+    width: 320px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    font-size: 90%;
+    line-height: 20px;
 }
