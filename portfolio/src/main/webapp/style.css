@@ -58,3 +58,27 @@ a {
     font-size: 90%;
     line-height: 20px;
 }
+
+
+#gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: center;
+  /* width: 180px; */
+  width: 432px;
+}
+
+div.gallery img {
+  width: 100%;
+  height: 100%;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+  color: #ffbad2; 
+}
+
+h2 {
+    color: #ffbad2;
+}
