@@ -31,11 +31,30 @@ function getRandomFact() {
     console.log('Getting a random fact.');
 
     // The fetch() function returns a Promise.
-    const responsePromise = fetch('/data');
+    // const responsePromise = fetch('/data');
 
     // When the request is complete, pass the response into handleResponse().
-    responsePromise.then(handleResponse);
+    // responsePromise.then(handleResponse);
+
+    fetch('/data').then(response => response.json()).then((facts) => {
+        const factsListElement = document.getElementById('fact-container');
+        factsListElement.innerHTML = '';
+        factsListElement.appendChild(createListElement('First fact: '
+        + facts.firstFact));
+        factsListElement.appendChild(createListElement('Second fact: '
+        + facts.secondFact));
+        factsListElement.appendChild(createListElement('Third fact: '
+        + facts.thirdFact));
+    });
 }
+
+function createListElement(text) {
+    const liElement = document.createElement('li');
+    liElement.innerText = text;
+    return liElement;
+}
+
+
 
 function handleResponse(response) {
     console.log('Handling the response.');

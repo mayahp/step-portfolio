@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class DataServlet extends HttpServlet {
 
     private List<String> factList;
+    private List<String> messageList;
 
     @Override
     public void init() {
@@ -41,12 +42,35 @@ public class DataServlet extends HttpServlet {
         factList.add("I'm interested in K-Pop.");
         factList.add("I grew up playing with my younger cousins on a regular basis.");
 
+        messageList = new ArrayList<>();
+        messageList.add("I am the oldest of all of my immediate cousins.");
+        messageList.add("My entire extended family immigrated to the US.");
+        messageList.add("I'm interested in K-Pop.");
     }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String randomFact = factList.get((int) (Math.random() * factList.size()));
-    response.setContentType("text/html;");
-    response.getWriter().println(randomFact);
+    // String randomFact = factList.get((int) (Math.random() * factList.size()));
+    // response.setContentType("text/html;");
+    // response.getWriter().println(randomFact);
+
+    String json = convertToJson();
+    response.setContentType("text/html");
+    response.getWriter().println(json);
+
+  }
+
+    private String convertToJson() {
+        String json = "{";
+        json += "\"firstFact\": ";
+        json += "\"" + messageList.get(0) + "\"";
+        json += ", ";
+        json += "\"secondFact\": ";
+        json += "\"" + messageList.get(1) + "\"";
+        json += ", ";
+        json += "\"thirdFact\": ";
+        json += messageList.get(2);
+        json += "}";
+        return json;
   }
 }
