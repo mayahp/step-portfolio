@@ -26,3 +26,28 @@ function addRandomSong() {
   const songContainer = document.getElementById('song-container');
   songContainer.innerText = song;
 }
+
+function getRandomSong() {
+    console.log('Getting a random song.');
+
+    // The fetch() function returns a Promise
+    const responsePromise = fetch('/data');
+
+    // When the request is complete, pass the response into handleResponse().
+    responsePromise.then(handleResponse);
+}
+
+function handleResponse(response) {
+    console.log('Handling the response.');
+
+    const textPromise = response.text();
+
+    textPromise.then(addSongToDom);
+}
+
+function addSongToDom(song) {
+    console.log('Adding song to dom: ' + song);
+
+    const songContainer = document.getElementById('song-container');
+    songContainer.innerText = song;
+}
