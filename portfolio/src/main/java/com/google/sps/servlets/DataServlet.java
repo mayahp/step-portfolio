@@ -26,28 +26,27 @@ import java.util.ArrayList;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-    private List<String> songs;
+    private List<String> factList;
 
     @Override
     public void init() {
-        songs = new ArrayList<>();
-        songs.add("134340 by BTS");
-        songs.add("Boy With Luv by BTS");
-        songs.add("Tempo by EXO");
-        songs.add("Style by Taylor Swift");
-        songs.add("Without You by Oh Wonder");
-        songs.add("High on Humans by Oh Wonder");
-        songs.add("Fresh Static Snow by Porter Robinson");
-        songs.add("Divinity by Porter Robinson");
-        songs.add("Technicolor by Madeon");
-        songs.add("Pop Culture by Madeon");
-        songs.add("Icarus by Madeon");
+        factList = new ArrayList<>();
+        factList.add("On my mom's side of the family, I'm the oldest of my generation.");
+        factList.add("I have two younger sisters.");
+        factList.add("I once won a jigsaw puzzle competition.");
+        factList.add("After graduating, I want to volunteer as CS instructor along with my full-time job.");
+        factList.add("My entire extended family immigrated to the US.");
+        factList.add("I am the oldest of all of my immediate cousins.");
+        factList.add("My first large team coding project was done with an international team.");
+        factList.add("I'm interested in K-Pop.");
+        factList.add("I grew up playing with my younger cousins on a regular basis.");
+
     }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String song = songs.get((int) (Math.random() * songs.size()));
+    String randomFact = factList.get((int) (Math.random() * factList.size()));
     response.setContentType("text/html;");
-    response.getWriter().println(song);
+    response.getWriter().println(randomFact);
   }
 }

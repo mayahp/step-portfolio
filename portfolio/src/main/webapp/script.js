@@ -27,10 +27,10 @@ function addRandomSong() {
   songContainer.innerText = song;
 }
 
-function getRandomSong() {
-    console.log('Getting a random song.');
+function getRandomFact() {
+    console.log('Getting a random fact.');
 
-    // The fetch() function returns a Promise
+    // The fetch() function returns a Promise.
     const responsePromise = fetch('/data');
 
     // When the request is complete, pass the response into handleResponse().
@@ -40,14 +40,14 @@ function getRandomSong() {
 function handleResponse(response) {
     console.log('Handling the response.');
 
-    const textPromise = response.text();
+    const factTextPromise = response.text();
 
-    textPromise.then(addSongToDom);
+    factTextPromise.then(addFactText);
 }
 
-function addSongToDom(song) {
-    console.log('Adding song to dom: ' + song);
+function addFactText(fact) {
+    console.log('Adding fact to dom: ' + fact);
 
-    const songContainer = document.getElementById('song-container');
-    songContainer.innerText = song;
+    const factContainer = document.getElementById('fact-container');
+    factContainer.innerText = fact;
 }
