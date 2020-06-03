@@ -12,21 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
- */
-function addRandomSong() {
-  const songs =
-      ['134340 by BTS', '0 Mile by NCT 127', 'Ghungroo by Arjit Singh and Shilpa Rao', 'Kangna by Dr Zeus', 'New Romantics by Taylor Swift', 'Beat Of My Drum by POWERS', 'Without You by Oh Wonder', 'High On Humans by Oh Wonder', 'Fresh Static Snow by Porter Robinson', 'Icarus by Madeon'];
-
-  // Pick a random greeting.
-  const song = songs[Math.floor(Math.random() * songs.length)];
-
-  // Add it to the page.
-  const songContainer = document.getElementById('song-container');
-  songContainer.innerText = song;
-}
-
 function getRandomFact() {
     console.log('Getting a random fact.');
 
