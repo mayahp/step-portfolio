@@ -30,21 +30,17 @@ function addRandomSong() {
 function getRandomFact() {
     console.log('Getting a random fact.');
 
-    // The fetch() function returns a Promise.
-    // const responsePromise = fetch('/data');
-
-    // When the request is complete, pass the response into handleResponse().
-    // responsePromise.then(handleResponse);
-
-    fetch('/data').then(response => response.json()).then((facts) => {
-        const factsListElement = document.getElementById('fact-container');
-        factsListElement.innerHTML = '';
-        factsListElement.appendChild(createListElement('First fact: '
-        + facts.firstFact));
-        factsListElement.appendChild(createListElement('Second fact: '
-        + facts.secondFact));
-        factsListElement.appendChild(createListElement('Third fact: '
-        + facts.thirdFact));
+    fetch('/data')
+        .then(response => response.json())
+        .then((facts) => {
+            const factsListElement = document.getElementById('fact-container');
+            factsListElement.innerHTML = '';
+            factsListElement.appendChild(createListElement('First fact: '
+                + facts.firstFact));
+            factsListElement.appendChild(createListElement('Second fact: '
+                + facts.secondFact));
+            factsListElement.appendChild(createListElement('Third fact: '
+                + facts.thirdFact));
     });
 }
 
@@ -54,19 +50,14 @@ function createListElement(text) {
     return liElement;
 }
 
-
-
 function handleResponse(response) {
     console.log('Handling the response.');
-
     const factTextPromise = response.text();
-
     factTextPromise.then(addFactText);
 }
 
 function addFactText(fact) {
     console.log('Adding fact to dom: ' + fact);
-
     const factContainer = document.getElementById('fact-container');
     factContainer.innerText = fact;
 }

@@ -50,17 +50,12 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // String randomFact = factList.get((int) (Math.random() * factList.size()));
-    // response.setContentType("text/html;");
-    // response.getWriter().println(randomFact);
-
-    String json = convertToJson();
+    String json = messageListJson();
     response.setContentType("text/html");
     response.getWriter().println(json);
-
   }
 
-    private String convertToJson() {
+    private String messageListJson() {
         String json = "{";
         json += "\"firstFact\": ";
         json += "\"" + messageList.get(0) + "\"";
