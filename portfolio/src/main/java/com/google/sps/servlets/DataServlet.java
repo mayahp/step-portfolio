@@ -48,12 +48,12 @@ public class DataServlet extends HttpServlet {
         messageList.add("I'm interested in K-Pop.");
     }
 
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = messageListJson();
-    response.setContentType("text/html");
-    response.getWriter().println(json);
-  }
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String json = messageListJson();
+        response.setContentType("text/html");
+        response.getWriter().println(json);
+    }
 
     private String messageListJson() {
         String json = "{";
@@ -67,5 +67,5 @@ public class DataServlet extends HttpServlet {
         json += messageList.get(2);
         json += "}";
         return json;
-  }
+    }
 }
