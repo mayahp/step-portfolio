@@ -14,6 +14,8 @@
 
 package com.google.sps.servlets;
 
+import com.google.sps.data.CommentStore;
+import com.google.gson.Gson;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,51 +28,31 @@ import java.util.ArrayList;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-    private List<String> factList;
-    private List<String> messageList;
-
-    @Override
-    public void init() {
-        factList = new ArrayList<>();
-        factList.add("On my mom's side of the family, I'm the oldest of my generation.");
-        factList.add("I have two younger sisters.");
-        factList.add("I once won a jigsaw puzzle competition.");
-        factList.add("After graduating, I want to volunteer as CS instructor along with my full-time job.");
-        factList.add("My entire extended family immigrated to the US.");
-        factList.add("I am the oldest of all of my immediate cousins.");
-        factList.add("My first large team coding project was done with an international team.");
-        factList.add("I'm interested in K-Pop.");
-        factList.add("I grew up playing with my younger cousins on a regular basis.");
-
-        messageList = new ArrayList<>();
-        messageList.add("I am the oldest of all of my immediate cousins.");
-        messageList.add("My entire extended family immigrated to the US.");
-        messageList.add("I'm interested in K-Pop.");
-    }
+    private CommentStore commentStore = new CommentStore();
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String json = messageListJson();
-        response.setContentType("text/html");
+        response.setContentType("application/json");
+        String json = new Gson().toJson(commentStore);
         response.getWriter().println(json);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Get the input from the form.
+        String name = getParameter(request, "name-input", "");
+        String comment = getParameter(request, "comment-input", "");
+        // response.getWriter().println(comment);
+        commentStore.logComment(name, comment);
+        response.sendRedirect("/index.html");
         
     }
 
-    private String messageListJson() {
-        String json = "{";
-        json += "\"firstFact\": ";
-        json += "\"" + messageList.get(0) + "\"";
-        json += ", ";
-        json += "\"secondFact\": ";
-        json += "\"" + messageList.get(1) + "\"";
-        json += ", ";
-        json += "\"thirdFact\": ";
-        json += messageList.get(2);
-        json += "}";
-        return json;
+    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+        String value = request.getParameter(name);
+        if (value == null) {
+            return defaultValue;
+        }
+        return value;
     }
 }

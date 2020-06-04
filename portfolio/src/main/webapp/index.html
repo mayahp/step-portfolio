@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getComments()">
     <div id="content">
       <h1>Maya Patel</h1>
       <p>Penn Engineering '22.  Future software enigneer.</p>
@@ -38,11 +38,15 @@
             <button onClick="getRandomFact()">Fun Fact</button>
             <div id="fact-container"></div>
         </div>
-        <form action="/data" method="POST">
-            <p>Write a comment below!</p>
-            <textarea name="text-input"></textarea>
-            <br/><br/>
-            <input type="submit" />
-        </form>
+        <div class="comments">
+            <h3>Write a comment below!</h3>
+            <form action="/data" method="POST">
+                <textarea name="name-input">Name</textarea>
+                <textarea name="comment-input">Comment</textarea>
+                <br/><br/>
+                <input type="submit" />
+            </form>
+            <ul id="comment-container"></ul>
+        </div>
     </div>
   </body>
