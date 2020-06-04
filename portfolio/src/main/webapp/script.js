@@ -12,21 +12,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function getRandomFact() {
+function updateFactContainerWithRandomFact() {
     console.log('Getting a random fact.');
+    const facts = ['On my mom\'s side of the family, I\'m the oldest of my generation.',
+    'I have two younger sisters.', 'I once won a jigsaw puzzle competition.',
+    'After graduating, I want to volunteer as CS instructor along with my full-time job.',
+    'My entire extended family immigrated to the US.',
+    'I am the oldest of all of my immediate cousins.',
+    'My first large team coding project was done with an international team.',
+    'I\'m interested in K-Pop.', 'I grew up playing with my younger cousins on a regular basis.'];
 
+    const fact = facts[Math.floor(Math.random() * facts.length)];
+    const factContainer = document.getElementById('fact-container');
+    factContainer.innerText = fact; 
+}
+
+function getComments() {
+    console.log("here");
+    // Build the list of comment entries.
     fetch('/data')
-        .then(response => response.json())
-        .then((facts) => {
-            const factsListElement = document.getElementById('fact-container');
-            factsListElement.innerHTML = '';
-            factsListElement.appendChild(createListElement('First fact: '
-                + facts.firstFact));
-            factsListElement.appendChild(createListElement('Second fact: '
-                + facts.secondFact));
-            factsListElement.appendChild(createListElement('Third fact: '
-                + facts.thirdFact));
-    });
+        .then(comments => comments.json())
+        .then((comment) => {
+            const commentEl = document.getElementById('comment-container');
+            comment.comments.forEach((line) => {
+                commentEl.appendChild(createListElement(line));
+            });
+    });    
 }
 
 function createListElement(text) {
