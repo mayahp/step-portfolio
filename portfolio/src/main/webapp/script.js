@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function getRandomFact() {
+function updateFactContainerWithRandomFact() {
     console.log('Getting a random fact.');
     const facts = ['On my mom\'s side of the family, I\'m the oldest of my generation.',
     'I have two younger sisters.', 'I once won a jigsaw puzzle competition.',

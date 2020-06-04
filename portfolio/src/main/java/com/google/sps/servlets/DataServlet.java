@@ -42,10 +42,8 @@ public class DataServlet extends HttpServlet {
         // Get the input from the form.
         String name = getParameter(request, "name-input", "");
         String comment = getParameter(request, "comment-input", "");
-        // response.getWriter().println(comment);
-        commentStore.logComment(name, comment);
-        response.sendRedirect("/index.html");
-        
+        commentStore.addComment(name, comment);
+        response.sendRedirect("/index.html"); 
     }
 
     private String getParameter(HttpServletRequest request, String name, String defaultValue) {
