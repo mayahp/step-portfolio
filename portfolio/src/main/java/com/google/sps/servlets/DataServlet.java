@@ -55,6 +55,11 @@ public class DataServlet extends HttpServlet {
         response.getWriter().println(json);
     }
 
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        
+    }
+
     private String messageListJson() {
         String json = "{";
         json += "\"firstFact\": ";
