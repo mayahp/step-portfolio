@@ -28,22 +28,28 @@ function updateFactContainerWithRandomFact() {
 }
 
 function getComments() {
-    console.log("here");
     // Build the list of comment entries.
     fetch('/data')
-        .then(comments => comments.json())
-        .then((comment) => {
-            const commentEl = document.getElementById('comment-container');
-            comment.comments.forEach((line) => {
-                commentEl.appendChild(createListElement(line));
+        .then(response => response.json())
+        .then((comments) => {
+            const commentListElement = document.getElementById('comment-container');
+            comments.forEach((comment) => {
+                commentListElement.appendChild(createCommentElement(comment));
             });
     });    
 }
 
-function createListElement(text) {
-    const liElement = document.createElement('li');
-    liElement.innerText = text;
-    return liElement;
+function createCommentElement(comment) {
+    const commentElement = document.createElement('li');
+    commentElement.className = 'comment';
+
+    const name = comment.name;
+    const text = comment.textContent;
+    console.log(typeof text);
+    const fullComment = name + ': ' + text;
+
+    commentElement.innerText = fullComment;
+    return commentElement;
 }
 
 function handleResponse(response) {
