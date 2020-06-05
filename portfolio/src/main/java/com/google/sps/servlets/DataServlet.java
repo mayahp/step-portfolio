@@ -14,7 +14,6 @@
  
 package com.google.sps.servlets;
  
-import com.google.sps.data.CommentStore;
 import com.google.sps.data.Comment;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
@@ -35,7 +34,9 @@ import java.util.ArrayList;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
  
-    private CommentStore commentStore = new CommentStore();
+    private String timestampProperty = "timestamp";
+    private String nameProperty = "name";
+    private String textContentProperty = "textContent";
  
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -46,8 +47,8 @@ public class DataServlet extends HttpServlet {
  
         List<Comment> commentList = new ArrayList<>();
         for (Entity entity : comments.asIterable()) {
-            long timestamp = (long) entity.getProperty("timestamp");
-            String name = (String) entity.getProperty("name");
+            long timestamp = (long) entity.getProperty(timestampProperty);
+            String name = (String) entity.getProperty(nameProperty);
             String textContent = (String) entity.getProperty("textContent");
  
             Comment newComment = new Comment(timestamp, name, textContent);
@@ -79,10 +80,7 @@ public class DataServlet extends HttpServlet {
  
     private String getParameter(HttpServletRequest request, String name, String defaultValue) {
         String value = request.getParameter(name);
-        if (value == null) {
-            return defaultValue;
-        }
-        return value;
+        return (value == null) ? defaultValue : value;
     }
 }
  
