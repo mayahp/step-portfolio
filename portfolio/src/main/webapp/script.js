@@ -33,8 +33,15 @@ function getComments() {
         .then(response => response.json())
         .then((comments) => {
             const commentListElement = document.getElementById('comment-container');
+            var commentCount = 0;
             comments.forEach((comment) => {
-                commentListElement.appendChild(createCommentElement(comment));
+                console.log(typeof comment);
+                if (comment == null) {
+                    document.getElementById('error-message').textContent = "There are only " + commentCount + " comments.";
+                } else {
+                    commentListElement.appendChild(createCommentElement(comment));
+                    commentCount++;
+                }
             });
     });    
 }
@@ -45,7 +52,6 @@ function createCommentElement(comment) {
 
     const name = comment.name;
     const text = comment.textContent;
-    console.log(typeof text);
     const fullComment = name + ': ' + text;
 
     commentElement.innerText = fullComment;
