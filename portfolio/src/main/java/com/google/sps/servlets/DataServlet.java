@@ -40,6 +40,8 @@ public class DataServlet extends HttpServlet {
     
     // Number of comments to display on screen.
     int commentChoice;
+
+    int COMMENT_ERROR_CODE = -1;
  
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -53,7 +55,7 @@ public class DataServlet extends HttpServlet {
         
         List<Comment> commentList = new ArrayList<>();
         for (Entity entity : comments.asIterable()) {
-            if (numCommentsLeft == 0) {
+            if (numCommentsLeft <= 0) {
                 break;
             }
             long timestamp = (long) entity.getProperty(timestampProperty);
@@ -67,9 +69,9 @@ public class DataServlet extends HttpServlet {
 
         Gson gson = new Gson();
  
-        // Displays this message if user requests more comments than exist.
+        // Handles the case where the user requests more comments than what exists.
         if (numCommentsLeft > 0) {
-            commentList.add(null);
+            commentList.add(new Comment(COMMENT_ERROR_CODE, "", ""));
         }
 
         response.setContentType("application/json");

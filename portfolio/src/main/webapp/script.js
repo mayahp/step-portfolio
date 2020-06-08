@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+const COMMENT_ERROR_CODE = -1;
+
 function updateFactContainerWithRandomFact() {
     console.log('Getting a random fact.');
     const facts = ['On my mom\'s side of the family, I\'m the oldest of my generation.',
@@ -35,8 +37,7 @@ function getComments() {
             const commentListElement = document.getElementById('comment-container');
             var commentCount = 0;
             comments.forEach((comment) => {
-                console.log(typeof comment);
-                if (comment == null) {
+                if (comment.timestamp == COMMENT_ERROR_CODE) {
                     document.getElementById('error-message').textContent = "There are only " + commentCount + " comments.";
                 } else {
                     commentListElement.appendChild(createCommentElement(comment));
