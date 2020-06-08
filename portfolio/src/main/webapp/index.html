@@ -44,6 +44,10 @@
                 <textarea name="name-input">Name</textarea>
                 <textarea name="comment-input">Comment</textarea>
                 <br/><br/>
+                <p>Choose the number of comments to display.</p>
+                <input type="number" name="comment-number" min="1" max="20">
+                <br/><br/>
+                <p id="error-message"></p>
                 <input type="submit" />
             </form>
             <ul id="comment-container"></ul>

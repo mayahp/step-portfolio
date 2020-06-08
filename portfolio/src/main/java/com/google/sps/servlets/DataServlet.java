@@ -37,6 +37,11 @@ public class DataServlet extends HttpServlet {
     private String timestampProperty = "timestamp";
     private String nameProperty = "name";
     private String textContentProperty = "textContent";
+    
+    // Number of comments to display on screen.
+    int commentChoice;
+
+    int COMMENT_ERROR_CODE = -1;
  
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -44,19 +49,31 @@ public class DataServlet extends HttpServlet {
  
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery comments = datastore.prepare(query);
- 
+
+        // Number of comments left to display, used to stop for loop.
+        int numCommentsLeft = commentChoice;
+        
         List<Comment> commentList = new ArrayList<>();
         for (Entity entity : comments.asIterable()) {
+            if (numCommentsLeft <= 0) {
+                break;
+            }
             long timestamp = (long) entity.getProperty(timestampProperty);
             String name = (String) entity.getProperty(nameProperty);
             String textContent = (String) entity.getProperty("textContent");
  
             Comment newComment = new Comment(timestamp, name, textContent);
             commentList.add(newComment);
+            numCommentsLeft--;
         }
- 
+
         Gson gson = new Gson();
  
+        // Handles the case where the user requests more comments than what exists.
+        if (numCommentsLeft > 0) {
+            commentList.add(new Comment(COMMENT_ERROR_CODE, "", ""));
+        }
+
         response.setContentType("application/json");
         response.getWriter().println(gson.toJson(commentList));
     }
@@ -66,6 +83,7 @@ public class DataServlet extends HttpServlet {
         String name = getParameter(request, "name-input", "");
         String textContent = getParameter(request, "comment-input", "");
         long timestamp = System.currentTimeMillis();
+        commentChoice = getCommentChoice(request);
  
         Entity commentEntity = new Entity("Comment");
         commentEntity.setProperty("name", name);
@@ -82,5 +100,18 @@ public class DataServlet extends HttpServlet {
         String value = request.getParameter(name);
         return (value == null) ? defaultValue : value;
     }
+
+    private int getCommentChoice(HttpServletRequest request) {
+        String commentChoiceString = request.getParameter("comment-number");
+
+        int commentChoice;
+        try {
+            commentChoice = Integer.parseInt(commentChoiceString);
+        } catch (NumberFormatException e) {
+            System.err.println("Could not convert to int: " + commentChoiceString);
+            return -1;
+        }
+
+        return commentChoice;
+    }
 }
- 
