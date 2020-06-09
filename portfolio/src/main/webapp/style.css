@@ -1,18 +1,93 @@
 body {
     font: 100% Courier New;
-    background-color: black;
-    margin: 20px;
-    line-height: 26px;
+    background-color: #333;
+    /* margin: 20px;
+    line-height: 26px; */
+    padding-top: 5em;
+    /* display: flex; */
+    text-align: center;
+    justify-content: center;
 }
 
-#content {
+.typewriter {
+    color: white;
+    display: inline-block;
+}
+
+.typewriter h1 {
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-right: .15em solid #ffbad2;
+    white-space: nowrap;
+    /* margin: 0 auto; */
+    margin: auto;
+    letter-spacing: .15em;
+    animation:
+        typing 3.5s steps(30, end),
+        blink-caret .75s step-end infinite;
+}
+
+h3 {
+    color: #ffbad2;
+}
+
+.subtitle a {
+    color: white;
+}
+
+.welcome h2 {
+    text-align: left;
+    color: white;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-right: .15em solid #ffbad2;
+    white-space: nowrap;
+    margin:auto;
+    letter-spacing: .15em;
+    animation:
+        blink-caret .75s step-end infinite;
+}
+
+.welcome p {
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin: 175px;
+    color: #ffbad2;
+    /* width: 90%; */
+    text-align: justify;
+}
+
+.comments {
+    color: #ffbad2;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ffbad2; }
+}
+
+hr {
+    color: white;
+    width: 90%;
+
+}
+
+/* #content {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
   color: #ffbad2;
-}
+} */
 
-div {
+/* div {
     display: block;
 }
 
@@ -20,6 +95,7 @@ h1 {
     display: block;
     font-size: 2em;
     font-weight: bold;
+    justify-content: center;
 }
 
 .wrapper {
@@ -65,7 +141,7 @@ a {
   border: 1px solid #ccc;
   float: center;
   /* width: 180px; */
-  width: 432px;
+  /* width: 432px;
 }
 
 div.gallery img {
@@ -81,4 +157,4 @@ div.desc {
 
 h2 {
     color: #ffbad2;
-}
+}  */
