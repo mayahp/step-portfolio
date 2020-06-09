@@ -14,6 +14,18 @@
 
 const COMMENT_ERROR_CODE = -1;
 
+function start() {
+    getComments();
+    initMap();
+}
+
+function initMap() {
+    console.log('wtf');
+    const map = new google.maps.Map(
+        document.getElementById('map'),
+        {center: {lat: 37.422, lng: -122.084}, zoom: 16});
+}
+
 function updateFactContainerWithRandomFact() {
     console.log('Getting a random fact.');
     const facts = ['On my mom\'s side of the family, I\'m the oldest of my generation.',
@@ -57,16 +69,4 @@ function createCommentElement(comment) {
 
     commentElement.innerText = fullComment;
     return commentElement;
-}
-
-function handleResponse(response) {
-    console.log('Handling the response.');
-    const factTextPromise = response.text();
-    factTextPromise.then(addFactText);
-}
-
-function addFactText(fact) {
-    console.log('Adding fact to dom: ' + fact);
-    const factContainer = document.getElementById('fact-container');
-    factContainer.innerText = fact;
 }
