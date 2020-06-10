@@ -1,56 +1,53 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Maya Patel</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-  </head>
-  <body onload="getComments()">
-    <div id="content">
-      <h1>Maya Patel</h1>
-      <p>Penn Engineering '22.  Future software enigneer.</p>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKzmUFQYVyuz_RO87fN3FMEBCY3YL_Zww&callback=initMap" type="text/javascript"></script>
+</head>
+
+<body onload="start()">
+    <div class="typewriter">
+        <h1>Maya Patel</h1>
     </div>
-    <div class="wrapper">
-        <div id="menubar">
-            <ul id="menulist">
-                <li class="menuitem"><a href="images.html">Image Gallery</a></li>
-                <li class="menuitem"><a href="blog.html">Blog</a></li>
-            </ul>
-        </div>
-        <div id="main">
-            <h1>Welcome!</h1>
-            <p>Hi, I'm Maya, a rising junior at the University of Pennsylvania.  I'm navigating the tech industry with a passion for learning new things and teaching others along the way.
-                <br>
-                Get to know me!  Reach me at <a href="mailto:mayahp@seas.upenn.edu">mayahp@seas.upenn.edu</a>, connect with me on <a href="https://www.linkedin.com/in/mayahpatel">LinkedIn</a>, and view my work on <a href="https://www.github.com/mayahp">GitHub</a>.
-            </p>
-            <h2>A Bit About Me</h2>
-            <p>
-                I'm currently working from home in Colts Neck, NJ.  I have two younger sisters who are both in high school.  I'm spending lockdown by playing board games with them, completing jigsaw puzzles, and organizing virtual game nights with my college friends.  I am not only the oldest one in the family, but also the oldest of all of my immediate cousins on both sides of my family.  (On my mom's side of the family, I'm the oldest of the entire new generation of kids!)  Since almost all of my extended family immigrated to the USA in the 70s and 80s, I've been close with them for my whole life.  My cousins on my dad's side have lived 15 minutes away from me for most of my life, so I have many childhood memories playing with them. 
-                <br>
-                <br>
-                At school, I am a teaching assistant in the Computer Science department, a board member of PennApps (Penn's yearly hackathon, and the original college hackathon), a member of Zeta Tau Alpha Sorority, and involved with my school's South Asian American and Hindu communities.  I enjoy teaching computer science because I believe in making CS as accessible to as many people as possible.  I am proud to watch my students go from being undecided about their major to declarign a CS major, second major, or minor.  This is my first year on PennApps board, and I'm concerned that we won't be able to have a normal PennApps in the fall due to COVID-19.  However, it is still very exciting to help organize such a large event, regardless of if it's in-person or virtual.  I am one of the heads of the Operations team and also a member of the Logistics team.  I'm currently leading the recruitment process for PennApps, and making sure that each individual team gets their interviews conducted on time.  As for my sorority, I joined in the beginning of sophomore spring.  I had only spent around six weeks as a member before everyone was sent home for lockdown, but already I am feeling welcome in the group.  I enjoy being part of a large group on campus with its traditions, and to be able to meet people who study things other than engineering.  Finally, getting involved with various cultural groups on campus is a great break from my other extracurricular activities, which requre large time commitments.  Penn Hindu & Jain Association is a great organization that contains undergraduate and graduate students alike.  Since COVID-19 lockdowns began, we have been watching Bollywood movies and playing games over video chat together.
-            </p>
-        </div>
-        <div id="sidebar">
-            <h3>Fun Fact</h3>
+    <br>
+    <div class="subtitle">
+        <h3>Penn Engineering '22.  Future software engineer.</h3> 
+        <p><a href="mailto:mayahp@seas.upenn.edu">Email</a>   <a href="https://www.linkedin.com/in/mayahpatel">LinkedIn</a>   <a href="https://www.github.com/mayahp">GitHub</a></p>       
+    </div>
+    <br>
+    <hr>
+    <div class="welcome">
+        <h2>Welcome!</h2>
+        <p>Hi!  I'm Maya, a rising junior at the University of Pennsylvania.  I'm navigating the tech industry with a passion for learning new things and teaching others along the way.
+        <br><br>I'm currently working from home in Colts Neck, NJ.  I have two younger sisters who are both in high school.  I'm spending lockdown by playing board games with them, completing jigsaw puzzles, and organizing virtual game nights with my college friends.  I am not only the oldest one in the family, but also the oldest of all of my immediate cousins on both sides of my family.  (On my mom's side of the family, I'm the oldest of the entire new generation of kids!)  Since almost all of my extended family immigrated to the USA in the 70s and 80s, I've been close with them for my whole life.
+        <br><br>At school, I am a teaching assistant in the Computer Science department, a board member of PennApps (Penn's yearly hackathon, and the original college hackathon), a member of Zeta Tau Alpha Sorority, and involved with my school's South Asian American and Hindu communities.  I enjoy teaching computer science because I believe in making CS as accessible to as many people as possible.</p>
+        <div id="fun-fact">
+            <h2>Fun Fact</h2>
             <p>Click here to read a random fun fact about me:</p>
             <button onClick="updateFactContainerWithRandomFact()">Fun Fact</button>
             <div id="fact-container"></div>
         </div>
-        <div class="comments">
-            <h3>Write a comment below!</h3>
-            <form action="/data" method="POST">
-                <textarea name="name-input">Name</textarea>
-                <textarea name="comment-input">Comment</textarea>
-                <br/><br/>
-                <p>Choose the number of comments to display.</p>
-                <input type="number" name="comment-number" min="1" max="20">
-                <br/><br/>
-                <p id="error-message"></p>
-                <input type="submit" />
-            </form>
-            <ul id="comment-container"></ul>
-        </div>
     </div>
-  </body>
+    <hr>
+    <h2>Travel Map</h2>
+    <div id="map"></div>
+    <p>Here is a map of places that I've traveled to!</p>
+    <hr>
+    <div class="comments">
+        <h2>Write a comment below!</h2>
+        <form action="/data" method="POST">
+            <textarea name="name-input">Name</textarea>
+            <textarea name="comment-input">Comment</textarea>
+            <br/><br/>
+            <p>Choose the number of comments to display.</p>
+            <input type="number" name="comment-number" min="1" max="20">
+            <br/><br/>
+            <input type="submit" />
+        </form>
+        <p id="error-message"></p>
+        <ul id="comment-container"></ul>        
+    </div>   
+</body>

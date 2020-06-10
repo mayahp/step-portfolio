@@ -1,84 +1,92 @@
 body {
     font: 100% Courier New;
-    background-color: black;
-    margin: 20px;
-    line-height: 26px;
+    background-color: #333;
+    /* margin: 20px;
+    line-height: 26px; */
+    padding-top: 5em;
+    /* display: flex; */
+    text-align: center;
+    justify-content: center;
 }
 
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
-  color: #ffbad2;
-}
-
-div {
-    display: block;
-}
-
-h1 {
-    display: block;
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.wrapper {
-    color: #ffbad2;
-}
-
-ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-}
-
-.menuitem {
-    color: #ffbad2;
-    cursor: pointer;
-}
-
-li {
-    display: list-item;
-}
-
-a {
-    color : #ffbad2;
-}
-
-#sidebar {
+.typewriter {
     color: white;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 10px;
-    width: 320px;
-    top: 0;
-    right: 0;
-    position: absolute;
-    font-size: 90%;
-    line-height: 20px;
+    display: inline-block;
 }
 
-
-#gallery {
-  margin: 5px;
-  border: 1px solid #ccc;
-  float: center;
-  /* width: 180px; */
-  width: 432px;
+.typewriter h1 {
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-right: .15em solid #ffbad2;
+    white-space: nowrap;
+    /* margin: 0 auto; */
+    margin: auto;
+    letter-spacing: .15em;
+    animation:
+        typing 3.5s steps(30, end),
+        blink-caret .75s step-end infinite;
 }
 
-div.gallery img {
-  width: 100%;
-  height: 100%;
+h3 {
+    color: #ffbad2;
 }
 
-div.desc {
-  padding: 15px;
-  text-align: center;
-  color: #ffbad2; 
+.subtitle a {
+    color: white;
 }
 
 h2 {
+    text-align: left;
+    color: white;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    border-right: .15em solid #ffbad2;
+    white-space: nowrap;
+    margin:auto;
+    letter-spacing: .15em;
+    animation:
+        blink-caret .75s step-end infinite;
+}
+
+.welcome p {
+    /* margin-left: auto;
+    margin-right: auto; */
+    margin: 175px;
     color: #ffbad2;
+    /* width: 90%; */
+    text-align: justify;
+}
+
+.comments {
+    color: #ffbad2;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ffbad2; }
+}
+
+hr {
+    color: white;
+    width: 90%;
+
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+}
+  
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
