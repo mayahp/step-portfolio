@@ -13,6 +13,9 @@
 // limitations under the License.
 
 const COMMENT_ERROR_CODE = -1;
+var map;
+var upenn;
+var currentInfoWindow;
 
 function start() {
     getComments();
@@ -20,7 +23,7 @@ function start() {
 }
 
 function initMap() {
-    const upenn = {
+    upenn = {
         lat: 39.9522229,
         lng: -75.1954024
     };
@@ -45,7 +48,7 @@ function initMap() {
         lng: -75.1962875
     };
 
-    const map = new google.maps.Map(
+    map = new google.maps.Map(
         document.getElementById('map'), {
             center: upenn,
             zoom: 16,
@@ -175,14 +178,14 @@ function initMap() {
             ]
         });
 
-    const hillMarker = createMapMarker(map, hill, 'Hill College House', 'I lived in Hill College House in freshman year.', 'hill.jpg');
-    const zetaMarker = createMapMarker(map, zeta, 'Zeta Tau Alpha Sorority', 'My sorority\'s house.  I joined Zeta Tau Alpha in January 2020.', 'lin.jpg');
-    const engMarker = createMapMarker(map, eng, 'School of Engineering and Applied Sciences', 'I spend most of my time in the Engineering buildings.', 'eng.jpg');
-    const sobolMarker = createMapMarker(map, sobol, 'SoBol', 'I love getting acai bowls from SoBol.', 'acai.jpg');
-    const loveMarker = createMapMarker(map, love, 'Love Sculpture', 'The famous Love Sculpture is one of my favorite places on campus.', 'love.jpg');
+    const hillMarker = createMapMarker(hill, 'Hill College House', 'I lived in Hill College House in freshman year.', 'hill.jpg');
+    const zetaMarker = createMapMarker(zeta, 'Zeta Tau Alpha Sorority', 'My sorority\'s house.  I joined Zeta Tau Alpha in January 2020.', 'lin.jpg');
+    const engMarker = createMapMarker(eng, 'School of Engineering and Applied Sciences', 'I spend most of my time in the Engineering buildings.', 'eng.jpg');
+    const sobolMarker = createMapMarker(sobol, 'SoBol', 'I love getting acai bowls from SoBol.', 'acai.jpg');
+    const loveMarker = createMapMarker(love, 'Love Sculpture', 'The famous Love Sculpture is one of my favorite places on campus.', 'love.jpg');
 }
 
-function createMapMarker(map, place, title, text, img) {
+function createMapMarker(place, title, text, img) {
     const marker = new google.maps.Marker({
         position: place,
         map: map,
@@ -190,14 +193,21 @@ function createMapMarker(map, place, title, text, img) {
     });
 
     const infoWindow = new google.maps.InfoWindow({
-        content: '<p>' + text + '</p>' + '<img src="images/' + img + '"/>'
+        content: '<p>' + text + '</p>' + '<img src="images/' + img + '"/>' + '<br/>' + '<button onClick="panToCenter()">Back to Center</button>'
     });
 
-    marker.addListener('click', function() {
+    marker.addListener('click', function () {
+        currentInfoWindow = infoWindow;
         map.setZoom(20);
         map.setCenter(marker.getPosition());
         infoWindow.open(map, marker);
     });
+}
+
+function panToCenter() {
+    currentInfoWindow.close();
+    map.setZoom(16);
+    map.setCenter(upenn);
 }
 
 function updateFactContainerWithRandomFact() {
