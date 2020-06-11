@@ -36,8 +36,8 @@ function initMap() {
         lng: -75.2060464
     };
     const eng = {
-        lat: 39.9516732,
-        lng: -75.1933924
+        lat: 39.9517975,
+        lng: -75.1931415
     };
     const sobol = {
         lat: 39.9510881,
