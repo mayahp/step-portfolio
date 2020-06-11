@@ -45,8 +45,6 @@ function initMap() {
         lng: -75.1962875
     };
 
-    const places = [hill, zeta, eng, sobol, love];
-
     const map = new google.maps.Map(
         document.getElementById('map'), {
             center: upenn,
@@ -177,11 +175,28 @@ function initMap() {
             ]
         });
 
-    places.forEach(function (place) {
-        const marker = new google.maps.Marker({
-            position: place,
-            map: map,
-        });
+    const hillMarker = createMapMarker(map, hill, 'Hill College House', 'I lived in Hill College House in freshman year.', 'hill.jpg');
+    const zetaMarker = createMapMarker(map, zeta, 'Zeta Tau Alpha Sorority', 'My sorority\'s house.  I joined Zeta Tau Alpha in January 2020.', 'lin.jpg');
+    const engMarker = createMapMarker(map, eng, 'School of Engineering and Applied Sciences', 'I spend most of my time in the Engineering buildings.', 'eng.jpg');
+    const sobolMarker = createMapMarker(map, sobol, 'SoBol', 'I love getting acai bowls from SoBol.', 'acai.jpg');
+    const loveMarker = createMapMarker(map, love, 'Love Sculpture', 'The famous Love Sculpture is one of my favorite places on campus.', 'love.jpg');
+}
+
+function createMapMarker(map, place, title, text, img) {
+    const marker = new google.maps.Marker({
+        position: place,
+        map: map,
+        title: title
+    });
+
+    const infoWindow = new google.maps.InfoWindow({
+        content: '<p>' + text + '</p>' + '<img src="images/' + img + '"/>'
+    });
+
+    marker.addListener('click', function() {
+        map.setZoom(20);
+        map.setCenter(marker.getPosition());
+        infoWindow.open(map, marker);
     });
 }
 
