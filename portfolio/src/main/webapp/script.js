@@ -13,6 +13,7 @@
 // limitations under the License.
 
 const COMMENT_ERROR_CODE = -1;
+const USER_ERROR_CODE = -2;
 var map;
 var upenn;
 var currentInfoWindow;
@@ -20,6 +21,7 @@ var currentInfoWindow;
 function start() {
     getComments();
     initMap();
+    getLoginStatus();
 }
 
 function initMap() {
@@ -242,6 +244,33 @@ function getComments() {
                 }
             });
         });
+}
+
+function getLoginStatus() {
+    fetch('/auth')
+        .then(response => response.json())
+        .then((user) => {
+            const commentForm = document.getElementById('comment-form');
+            const loginLink = document.getElementById('login-link');
+            const logoutLink = document.getElementById('logout-link');
+            const url = user.url;
+            if (user.timestamp == USER_ERROR_CODE) {
+                commentForm.style.display = "none";
+                logoutLink.style.display = "none";
+                const loginMessage = document.getElementById('error-message');
+                loginMessage.textContent = "Please log in to post a comment.";
+                loginLink.setAttribute('href', url);
+            } else {
+                console.log('logged in');
+                commentForm.style.display = "block";
+                loginLink.style.display = "none";
+                logoutLink.setAttribute('href', url);
+            }
+        });
+}
+
+function login() {
+
 }
 
 function createCommentElement(comment) {

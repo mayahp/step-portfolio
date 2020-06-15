@@ -38,16 +38,20 @@
         <hr>
         <div class="comments">
             <h2>Write a comment below!</h2>
-            <form action="/data" method="POST">
-                <textarea name="name-input">Name</textarea>
-                <textarea name="comment-input">Comment</textarea>
-                <br/><br/>
-                <p>Choose the number of comments to display.</p>
-                <input type="number" name="comment-number" min="1" max="20">
-                <br/><br/>
-                <input type="submit" />
-            </form>
+            <div id="comment-form">
+                <form action="/data" method="POST">
+                    <textarea name="name-input">Name</textarea>
+                    <textarea name="comment-input">Comment</textarea>
+                    <br/><br/>
+                    <p>Choose the number of comments to display.</p>
+                    <input type="number" name="comment-number" min="1" max="20">
+                    <br/><br/>
+                    <input type="submit" />
+                </form>
+            </div>
             <p id="error-message"></p>
+            <p><a id="login-link" href="\">Log in here</a></p>
             <ul id="comment-container"></ul>
+            <p><a id="logout-link" href="\">Log out here</a></p>
         </div>
     </body>
