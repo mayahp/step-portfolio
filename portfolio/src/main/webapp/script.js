@@ -268,10 +268,6 @@ function getLoginStatus() {
         });
 }
 
-function login() {
-
-}
-
 function createCommentElement(comment) {
     const commentElement = document.createElement('li');
     commentElement.className = 'comment';
