@@ -4,11 +4,11 @@ package com.google.sps.data;
 public final class User {
     public final long timestamp;
     public final String username;
-    public final String url;
+    public final String buttonRedirectURL;
 
-    public User(long timestamp, String username, String url) {
+    public User(long timestamp, String username, String buttonRedirectURL) {
         this.timestamp = timestamp;
         this.username = username;
-        this.url = url;
+        this.buttonRedirectURL = buttonRedirectURL;
     }
 }

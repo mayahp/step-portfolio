@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/auth")
 public class LoginServlet extends HttpServlet {
 
-    int USER_ERROR_CODE = -2;
+    int USER_ERROR_CODE = -1;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

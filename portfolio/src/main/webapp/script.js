@@ -13,7 +13,7 @@
 // limitations under the License.
 
 const COMMENT_ERROR_CODE = -1;
-const USER_ERROR_CODE = -2;
+const USER_ERROR_CODE = -1;
 var map;
 var upenn;
 var currentInfoWindow;
@@ -253,17 +253,17 @@ function getLoginStatus() {
             const commentForm = document.getElementById('comment-form');
             const loginLink = document.getElementById('login-link');
             const logoutLink = document.getElementById('logout-link');
-            const url = user.url;
+            const buttonRedirectURL = user.buttonRedirectURL;
             if (user.timestamp == USER_ERROR_CODE) {
                 commentForm.style.display = "none";
                 logoutLink.style.display = "none";
                 const loginMessage = document.getElementById('error-message');
                 loginMessage.textContent = "Please log in to post a comment.";
-                loginLink.setAttribute('href', url);
+                loginLink.setAttribute('href', buttonRedirectURL);
             } else {
                 commentForm.style.display = "block";
                 loginLink.style.display = "none";
-                logoutLink.setAttribute('href', url);
+                logoutLink.setAttribute('href', buttonRedirectURL);
             }
         });
 }
