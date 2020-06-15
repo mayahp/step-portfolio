@@ -27,8 +27,6 @@ public class LoginServlet extends HttpServlet {
             String urlToRedirectAfterUserLogsOut = "/";
             String logoutUrl = userService.createLogoutURL(urlToRedirectAfterUserLogsOut);
 
-            // response.getWriter().println("<p>Hello " + userEmail + "!</p>");
-            // response.getWriter().println("<p>Logout <a href=\"" + logoutUrl + "\">here</a>.</p>");
             // Finds the index of the @ character.
             int index = userEmail.indexOf("@");
             String username = userEmail.substring(0, index);
@@ -38,8 +36,6 @@ public class LoginServlet extends HttpServlet {
             String urlToRedirectAfterUserLogsIn = "/";
             String loginUrl = userService.createLoginURL(urlToRedirectAfterUserLogsIn);
 
-            // response.getWriter().println("<p>Log in to post a comment.</p>");
-            // response.getWriter().println("<p>Login <a href=\"" + loginUrl + "\">here</a>.</p>");
             currentUser = new User(USER_ERROR_CODE, "", loginUrl);
         }
         response.getWriter().println(gson.toJson(currentUser));

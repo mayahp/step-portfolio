@@ -261,7 +261,6 @@ function getLoginStatus() {
 				loginMessage.textContent = "Please log in to post a comment.";
 				loginLink.setAttribute('href', url);
 			} else {
-				console.log('logged in');
 				commentForm.style.display = "block";
 				loginLink.style.display = "none";
 				logoutLink.setAttribute('href', url);
