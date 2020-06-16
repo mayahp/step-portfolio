@@ -13,6 +13,7 @@
 // limitations under the License.
 
 const COMMENT_ERROR_CODE = -1;
+const USER_ERROR_CODE = -1;
 var map;
 var upenn;
 var currentInfoWindow;
@@ -20,6 +21,7 @@ var currentInfoWindow;
 function start() {
     getComments();
     initMap();
+    getLoginStatus();
 }
 
 function initMap() {
@@ -36,8 +38,8 @@ function initMap() {
         lng: -75.2060464
     };
     const eng = {
-        lat: 39.9516732,
-        lng: -75.1933924
+        lat: 39.9517975,
+        lng: -75.1931415
     };
     const sobol = {
         lat: 39.9510881,
@@ -241,6 +243,28 @@ function getComments() {
                     commentCount++;
                 }
             });
+        });
+}
+
+function getLoginStatus() {
+    fetch('/auth')
+        .then(response => response.json())
+        .then((user) => {
+            const commentForm = document.getElementById('comment-form');
+            const loginLink = document.getElementById('login-link');
+            const logoutLink = document.getElementById('logout-link');
+            const buttonRedirectURL = user.buttonRedirectURL;
+            if (user.timestamp == USER_ERROR_CODE) {
+                commentForm.style.display = "none";
+                logoutLink.style.display = "none";
+                const loginMessage = document.getElementById('error-message');
+                loginMessage.textContent = "Please log in to post a comment.";
+                loginLink.setAttribute('href', buttonRedirectURL);
+            } else {
+                commentForm.style.display = "block";
+                loginLink.style.display = "none";
+                logoutLink.setAttribute('href', buttonRedirectURL);
+            }
         });
 }
 
