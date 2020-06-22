@@ -28,8 +28,8 @@ import org.junit.runners.JUnit4;
 /** */
 @RunWith(JUnit4.class)
 public final class FindMeetingQueryTest {
-    private static final Collection < Event > NO_EVENTS = Collections.emptySet();
-    private static final Collection < String > NO_ATTENDEES = Collections.emptySet();
+    private static final Collection <Event> NO_EVENTS = Collections.emptySet();
+    private static final Collection <String> NO_ATTENDEES = Collections.emptySet();
 
     // Some people that we can use in our tests.
     private static final String PERSON_A = "Person A";
@@ -273,7 +273,7 @@ public final class FindMeetingQueryTest {
     }
 
     @Test
-    public void everyRequiredAttendeeIsConsidered() {
+    public void everyRequiredAttendeeConsideredReturnsRequiredSchedule() {
         // Have one person C who is an optional attendee, and has an all-day event.
         
         Event allDayEvent = new Event("Event 1", 
@@ -301,7 +301,7 @@ public final class FindMeetingQueryTest {
     }
 
     @Test
-    public void optionalAttendeeIsBusy() {
+    public void optionalAttendeeBusyReturnsScheduleForOptionalAndRequired() {
         // Based on everyAttendeeIsConisdered; have one optional attendee C who
         // is busy from 8:30 to 9:00.
 
@@ -329,7 +329,7 @@ public final class FindMeetingQueryTest {
     }
 
     @Test
-    public void optionalAttendeeIsIgnored() {
+    public void optionalAttendeeIsIgnoredReturnsRequiredSchedule() {
         // Based on justEnoughRoom; have one optional attendee B who has an event
         // from 8:30 to 8:45.
         Event personBEvent = new Event("Event 3",
@@ -354,7 +354,7 @@ public final class FindMeetingQueryTest {
     }
 
     @Test
-    public void allOptionalSomeGaps() {
+    public void queryForOptionalAttendeesReturnsGapsInDay() {
         // Two optional attendees have some gaps in their schedules.
 
         Collection <Event> events = Arrays.asList(
@@ -379,7 +379,7 @@ public final class FindMeetingQueryTest {
     }
 
     @Test
-    public void allOptionalNoGaps() {
+    public void queryForOptionalAttendeesReturnsNoAvailability() {
         // Two optional attendees have no gaps in their schedules.
         Event allDayEventPersonA = new Event("Event 1", 
             TimeRange.fromStartDuration(TimeRange.START_OF_DAY, TimeRange.END_OF_DAY), Arrays.asList(PERSON_A));
